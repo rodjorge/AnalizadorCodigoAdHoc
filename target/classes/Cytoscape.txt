@@ -1,0 +1,46 @@
+var nodos = [
+        { data: { id: '1', nombre: 'Nodo 1' }, classes: ['ascendente'] },
+        { data: { id: '2', nombre: 'Nodo 2' }, classes: ['descendiente'] },
+        { data: { id: '3', nombre: 'Nodo 3' }, classes: ['descendiente'] }
+      ];
+      var aristas = [
+        { data: { id: '12', source: '1', target: '2' } },
+        { data: { id: '13', source: '1', target: '3' } },
+        { data: { id: '33', source: '3', target: '3' } }
+      ];
+      var grafico = document.getElementById('grafo');
+      var estilos = [
+        {
+          selector: 'node',
+          style: {
+            label: 'data(nombre)',
+            'border-width': '1px',
+            'border-color': 'blue'
+          }
+        },
+        {
+          selector: '.ascendente',
+          style: {
+            'background-color': 'red',
+            shape: 'square',
+            'border-width': '3px'
+          }
+        },
+        {
+          selector: '.descendiente',
+          style: {
+            'background-color': 'green'
+          }
+        }
+      ];
+      var cy = cytoscape({
+        container: grafico,
+        elements: {
+          nodes: nodos,
+          edges: aristas
+        },
+        layout: {
+          name: 'breadthfirst'
+        },
+        style: estilos
+      });

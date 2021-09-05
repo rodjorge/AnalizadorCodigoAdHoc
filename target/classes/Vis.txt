@@ -1,0 +1,30 @@
+      var nodos = new vis.DataSet([
+        { id: 1, label: 'Nodo 1', group: 'padre' },
+        { id: 2, label: 'Nodo 2', group: 'hijo' },
+        { id: 3, label: 'Nodo 3', group: 'hijo' }
+      ]);
+      var aristas = new vis.DataSet([
+        { from: 1, to: 2 },
+        { from: 1, to: 3 },
+        { from: 3, to: 3 }
+      ]);
+      var grafico = document.getElementById('grafo');
+      var datos = {
+        nodes: nodos,
+        edges: aristas
+      };
+      var opciones = {
+        groups: {
+          padre: {
+            color: { background: 'red' },
+            borderWidth: 3,
+            shape: 'square'
+          },
+          hijo: {
+            color: { background: 'green' },
+            borderWidth: 2,
+            shape: 'circle'
+          }
+        }
+      };
+      var network = new vis.Network(grafico, datos, opciones);

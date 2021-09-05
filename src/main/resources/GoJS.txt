@@ -1,0 +1,26 @@
+    var $ = go.GraphObject.make;
+    var opciones = 
+    {
+      "undoManager.isEnabled": true,
+      layout: $(go.TreeLayout, { angle: 90, layerSpacing: 35 })
+    }
+    var diagrama = $(go.Diagram, "grafo", opciones);
+    diagrama.nodeTemplate = $(go.Node, "Auto",
+      $(go.Shape, "Square", new go.Binding("fill", "color"), 
+      new go.Binding("figure", "forma")),
+      $(go.TextBlock, "Texto por Defecto",
+        { margin: 12, stroke: "white"},
+        new go.Binding("text","nombre")
+        )
+    );
+    var nodos = [
+      {key: "1", nombre: "Nodo 1", color: "red", forma: "Square"},
+      {key: "2", nombre: "Nodo 2", color: "green", forma: "Circle"},
+      {key: "3", nombre: "Nodo 3", color: "green", forma: "Circle"},
+    ];
+    var aristas = [
+      {from: "1", to:"2"},
+      {from: "1", to:"3"},
+      {from: "3", to:"3"},
+    ];
+    diagrama.model = new go.GraphLinksModel(nodos, aristas);
